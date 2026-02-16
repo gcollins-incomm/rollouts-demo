@@ -30,7 +30,7 @@ jobs:
           # Generate multiline text using Heredoc
           text=$(cat <<EOF
           Hello World
-          Host: ${ $network_host }
+          Host: ${network_host}
           EOF
           )
           
