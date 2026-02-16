@@ -14,7 +14,7 @@ on:
     #   elasticsearch_password:
     #     required: true
     outputs:
-      elastic_configuration_file:
+      elastic_configuration_file_output:
         value: ${{ jobs.elastic_configuration_file.outputs.elastic_configuration_file_job }}
 
 jobs:
