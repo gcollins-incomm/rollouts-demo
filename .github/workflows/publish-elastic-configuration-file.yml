@@ -20,6 +20,9 @@ on:
 jobs:
   elastic-configuration-file:
     runs-on: ubuntu-latest
+    outputs:
+      # Map the step's output to the job's output
+      elastic_configuration_file_job: ${{ steps.create-text.outputs.my_output }}    
     steps:
       - name: Create Multiline Text
         id: create-text
@@ -40,5 +43,3 @@ jobs:
           echo "my_output=$text" >> $GITHUB_OUTPUT    
         shell: bash
 
-    outputs:
-      elastic_configuration_file_job: ${{ steps.create-text.outputs }}
