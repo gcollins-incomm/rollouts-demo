@@ -25,5 +25,5 @@ jobs:
           # Reference the output using the needs context
           PUBLISHED_FILE="${{ needs.call_elastic_configuration_file.outputs.elastic_configuration_file_output }}"
           echo "The published file from the external job is:"        
-          echo "$PUBLISHED_FILE 
+          echo "$PUBLISHED_FILE"
 
