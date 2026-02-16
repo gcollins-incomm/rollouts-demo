@@ -15,14 +15,14 @@ on:
     #     required: true
     outputs:
       elastic_configuration_file_output:
-        value: ${{ jobs.elastic_configuration_file.outputs.elastic_configuration_file_job }}
+        value: ${{ jobs.elastic-configuration-file.outputs.elastic_configuration_file_job }}
 
 jobs:
-  elastic_configuration_file:
+  elastic-configuration-file:
     runs-on: ubuntu-latest
     steps:
       - name: Create Multiline Text
-        id: create_text
+        id: create-text
         run: |
           # Generate multiline text using Heredoc
           text=$(cat <<EOF
@@ -41,4 +41,4 @@ jobs:
         shell: bash
 
     outputs:
-      elastic_configuration_file_job: ${{ steps.create_text.outputs.json }}
+      elastic_configuration_file_job: ${{ steps.create-text.outputs }}
