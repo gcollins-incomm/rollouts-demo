@@ -27,11 +27,13 @@ jobs:
       - name: Create Multiline Text
         id: create-text
         run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo "text<<$EOF" >> $GITHUB_OUTPUT
-          echo "Hello World" >> $GITHUB_OUTPUT
-          echo "Host: ${network_host}" >> $GITHUB_OUTPUT
-          echo "$EOF" >> $GITHUB_OUTPUT
+          # Generate multiline text using Heredoc
+          text=$(cat <<EOF
+          Hello World
+          Line2
+          Line3
+          EOF
+          )
                   
           # Sanitize output (escape newlines/quotes) for GITHUB_OUTPUT
           # text="${text//'%'/'%25'}"
