@@ -36,9 +36,9 @@ jobs:
           )
                   
           # Sanitize output (escape newlines/quotes) for GITHUB_OUTPUT
-          # text="${text//'%'/'%25'}"
-          # text="${text//$'\n'/'%0A'}"
-          # text="${text//$'\r'/'%0D'}"
+          text="${text//'%'/'%25'}"
+          text="${text//$'\n'/'%0A'}"
+          text="${text//$'\r'/'%0D'}"
           
           # Set output
           echo "my_output=$text" >> $GITHUB_OUTPUT    
