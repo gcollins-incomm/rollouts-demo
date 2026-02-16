@@ -9,7 +9,7 @@ on:
         default: 'default-value'
 
 jobs:
-  call_elastic_configuration_file:
+  call-elastic-configuration-file:
     # Call the reusable workflow directly within the job
     uses: ./.github/workflows/publish-elastic-configuration-file.yml
     with:
@@ -18,12 +18,12 @@ jobs:
 
   use-variable-job:
     runs-on: ubuntu-latest
-    needs: call_elastic_configuration_file
+    needs: call-elastic-configuration-file
     steps:
       - name: Access the variable from the called workflow
         run: |
           # Reference the output using the needs context
-          PUBLISHED_FILE="${{ needs.call_elastic_configuration_file.outputs.elastic_configuration_file_output }}"
+          PUBLISHED_FILE="${{ needs.call-elastic-configuration-file.outputs.elastic_configuration_file_output }}"
           echo "The published file from the external job is:"        
           echo "$PUBLISHED_FILE"
 
