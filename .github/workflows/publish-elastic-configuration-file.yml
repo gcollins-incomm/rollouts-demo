@@ -1,0 +1,44 @@
+name: Publish Elastic Configuration File
+run-name:  Publish Elastic Configuration File
+on:
+  workflow_call:
+    inputs:
+      network_host:
+        required: true
+        type: string
+      xpack_security_enabled:
+        required: false
+        type: boolean
+        default: false
+    # secrets:
+    #   elasticsearch_password:
+    #     required: true
+    outputs:
+      elastic_configuration_file:
+        value: ${{ jobs.elastic_configuration_file.outputs.elastic_configuration_file_job }}
+
+jobs:
+  elastic_configuration_file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Multiline Text
+        id: create_text
+        run: |
+          # Generate multiline text using Heredoc
+          text=$(cat <<EOF
+          Hello World
+          Host: {{ network_host }}
+          EOF
+          )
+          
+          # Sanitize output (escape newlines/quotes) for GITHUB_OUTPUT
+          text="${text//'%'/'%25'}"
+          text="${text//$'\n'/'%0A'}"
+          text="${text//$'\r'/'%0D'}"
+          
+          # Set output
+          echo "my_output=$text" >> $GITHUB_OUTPUT    
+        shell: bash
+
+    outputs:
+      elastic_configuration_file_job: ${{ steps.create_text.outputs.json }}
